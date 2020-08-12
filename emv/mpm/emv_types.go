@@ -482,8 +482,19 @@ func (s *MerchantAccountInformation) SetGloballyUniqueIdentifier(v string) {
 	s.GloballyUniqueIdentifier = tlv
 }
 
+// TODO not sure if we should rename this
 // AddPaymentNetworkSpecific ...
 func (s *MerchantAccountInformation) AddPaymentNetworkSpecific(id ID, v string) {
+	tlv := TLV{
+		Tag:    id,
+		Length: l(v),
+		Value:  v,
+	}
+	s.PaymentNetworkSpecific = append(s.PaymentNetworkSpecific, tlv)
+}
+
+// SetPaymentType
+func (s *MerchantAccountInformation) SetPaymentType(id ID, v string) {
 	tlv := TLV{
 		Tag:    id,
 		Length: l(v),
